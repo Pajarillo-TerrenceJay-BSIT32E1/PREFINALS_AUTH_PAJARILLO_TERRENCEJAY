@@ -23,3 +23,27 @@
 
             return Ok(thing);
         }
+
+        [HttpGet("about")]
+        public IActionResult About()
+        {
+            return Ok(_owner);
+        }
+
+        [HttpPost("about")]
+        public IActionResult About([FromBody] NameModel model)
+        {
+            return Ok($"Hi {model.Name} from {_owner}");
+        }
+    }
+
+    public class NameModel
+    {
+        private string? _name = "Sr. Nino Francisco Alamo";
+        public string? Name
+        {
+            get { return _name == "string" ? "Sr. Nino Francisco Alamo" : _name; }
+            set { _name = value; }
+        }
+    }
+}
